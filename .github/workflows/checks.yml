@@ -1,0 +1,24 @@
+name: 'block-pr-to-main-mf1'
+description: 'Blocks PRs in this repository going to the main mf1 repository'
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  pr_not_going_to_mf1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure PR base repo is not main mf1 repo
+        shell: bash
+        run: |
+
+          echo "Repo: ${{ github.repository }}"
+          echo "Head Repo: ${{ github.event.pull_request.head.repo.full_name }}"
+          echo "Base Repo: ${{ github.event.pull_request.base.repo.full_name }}"
+          echo "Forked: ${{ github.event.pull_request.head.repo.fork }}"
+          echo "Branch: ${{ github.event.pull_request.head.ref }}"
+
+          if [ "${{ github.event.pull_request.base.repo.full_name }}" == "MikeForce" ]; then
+            echo "PRs from this repostory should not use the main MF1 repository as a base."
+            exit 1
+          fi
