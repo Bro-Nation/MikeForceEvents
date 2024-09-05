@@ -15,6 +15,53 @@ But not everyon is a git wizard, so instead you can do this
 4. Extract allthe contents of your Zip file. You should end up with 4 folders for each map, prefixed by `bn_mikeforce_events`
 5. Start editing your mission!
 
+----
+## Maintenance (Development Team)
+
+Unfortunately trying to frok the main Bro-Nation MikeForce repository and auto-update through the "Sync" button is dangerous,
+because GitHub assumes pull requests for this repository are supposed to point back to the MAIN Bro Nation Mike Force repository.
+
+Which adds all sorts of dangerous potentiall accidents for overwriting changes in the main build by accident.
+
+So all updates for the events build should be done manually via the terminal.
+
+In a shell
+
+```bash
+# clone this repo -- this gets you the events repo's remote as 'origin'
+git clone https://github.com/Bro-Nation/MikeForceEvents.git ./bn-mf-events
+cd ./bn-mf-events/
+
+# add the main build as a 'remote -- an alternative basis for history from 
+# some other location that is not local (which is why it's called a remote,
+# funnily enough).
+# this gets you the main bro nation Mike Force build `development` branch
+# in the same repository as the events repo. 
+# basically, you get two repos in one!
+git remote add upstream https://github.com/Bro-Nation/Mike-Force
+
+# sync the main Mike Force remote's changes locally
+# this doesn't update any project files, it just updates git's background
+# database and tracking
+git fetch -a upstream
+
+# check out a new branch from the EVENTS remote's development branch
+git checkout -b some-branch-name-for-integrating-upstream-changes
+
+# merge in the main mike force repo's changes
+git merge upstream/development
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# if there are any merge conflicts here you need to update and fix manually!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# now push the changes to the EVENTS remote -- this creates a new branch in
+# the events repo which you can create a pull request from
+git push -u origin some-branch-name-for-integrating-upstream-changes
+```
+
+Then someone (probably @dijksterhuis) can (maybe) merge it.
+
 
 ----
 
