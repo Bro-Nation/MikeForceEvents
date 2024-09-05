@@ -20,7 +20,6 @@ respawnOnStart = -1;
 respawnTemplates[] = { "MenuPosition" };
 onPauseScript = "";
 OnLoadIntro = "Welcome to Mike Force (Bro-Nation Events Edition)";
-OnLoadIntro = "Welcome to Mike Force";
 loadScreen = "\vn\missions_f_vietnam\data\img\mikeforce\mission.jpg";
 overviewPicture = "\vn\missions_f_vietnam\data\img\mikeforce\mission.jpg";
 OnLoadIntroTime = 0;
