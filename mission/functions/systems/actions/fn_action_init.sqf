@@ -24,9 +24,8 @@ if (isNil "vn_mf_actions_initialized" || vn_mf_actions_player != player) then //
 {
 	vn_mf_actions_player = player;
 	vn_mf_actions_initialized = 1;
-	call vn_mf_fnc_action_destroy_respawn;
 	call vn_mf_fnc_action_capture_player;
-	call vn_mf_fnc_action_vehspawner_show_spawn_point
+	call vn_mf_fnc_action_vehspawner_show_spawn_point;
 	call vn_mf_fnc_action_curator_force_recover_wrecked_vehicle;
 	call vn_mf_fnc_action_curator_force_reset_idle_vehicle;
 	call vn_mf_fnc_action_curator_lock_spawner;
